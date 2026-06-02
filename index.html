@@ -49,37 +49,19 @@
     <section><div class="installTip"><b>På iPhone:</b> Åbn siden i Safari → tryk Del → “Føj til hjemmeskærm”. Så føles den som en app.</div><br><div class="editHint"><b>Vedligeholdelse:</b> Udskift billeder i <b>assets</b>. Rejseikoner ligger i <b>assets/cards</b>.</div></section>
   </main>
   <nav class="nav"><a class="active" href="#home"><b>🏠</b>Forside</a><a href="#plan"><b>📅</b>Plan</a><a href="https://www.google.com/maps/dir/Herning/Disneyland+Paris/Lyon/Evenia+Olympic+Garden" target="_blank"><b>📍</b>Kort</a><a href="#bingo"><b>🏆</b>Bingo</a><a href="#crew"><b>👥</b>Hold</a></nav>
-  <dialog id="infoModal"><button class="close" id="closeModal">×</button><img class="modalImg" id="modalImg" src="" alt=""><div class="modalBody"><h2 id="modalTitle"></h2><p id="modalText"></p><ul id="modalList"></ul><a class="mapBtn" id="modalLink" href="#" target="_blank" rel="noreferrer">Åbn oplevelse</a>
-<a class="mapBtn" id="modalMap" href="#" target="_blank" rel="noreferrer">Åbn i kort</a></div></dialog>
+  <dialog id="infoModal"><button class="close" id="closeModal">×</button><img class="modalImg" id="modalImg" src="" alt=""><div class="modalBody"><h2 id="modalTitle"></h2><p id="modalText"></p><ul id="modalList"></ul><a class="mapBtn" id="modalMap" href="#" target="_blank" rel="noreferrer">Åbn i kort</a></div></dialog>
 <script>
 const info={
  denmark:{title:'Afgang fra Herning',img:'assets/cards/denmark.png',text:'Roadtrippen starter mandag 6. juli kl. 10.00.',list:['Pak snacks og ladekabler','Grænsehandel','Find overnatning på vej mod Paris'],map:'https://www.google.com/maps/dir/Herning/Disneyland+Paris'},
- disneyland:{
- title:'Disneyland Paris',
- img:'assets/cards/disneyland.png',
- text:'To dage med de bedste rides og aftenshow.',
- list:[
-   'Big Thunder Mountain',
-   'Hyperspace Mountain',
-   'Tower of Terror',
-   'Avengers Assemble',
-   'Crush’s Coaster',
-   'Aftenshow hvis energien holder'
- ],
- map:'https://www.google.com/maps/search/Disneyland+Paris',
- link:'https://www.disneylandparis.com/da-dk/underholdning/kort'
-},
+ disneyland:{title:'Disneyland Paris',img:'assets/cards/disneyland.png',text:'To dage med de bedste rides og aftenshow.',list:['Big Thunder Mountain','Hyperspace Mountain','Tower of Terror','Avengers Assemble','Crush’s Coaster','Aftenshow hvis energien holder'],map:'https://www.google.com/maps/search/Disneyland+Paris'},
  psg:{title:'PSG Stadion Tour',img:'assets/cards/psg.png',text:'Stadionrundtur i Paris med fodboldstemning.',list:['Spillertunnel','Omklædningsrum','Trofæer','PSG-butik','Familiebillede ved stadion'],map:'https://www.google.com/maps/search/Parc+des+Princes'},
  paris:{title:'Paris',img:'assets/cards/paris.png',text:'Paris-hygge, Eiffeltårnet og måske shopping.',list:['Eiffeltårnet','Seinen','Café eller is','Byhygge før turen mod Lyon'],map:'https://www.google.com/maps/search/Eiffel+Tower'},
  lyon:{title:'Lyon',img:'assets/cards/lyon.png',text:'Storby, streetfood og Musée des Confluences.',list:['Musée des Confluences','Streetfood','Gåtur i byen','God pause før Spanien'],map:'https://www.google.com/maps/search/Mus%C3%A9e+des+Confluences+Lyon'},
  spain:{title:'Spanien',img:'assets/cards/spain.png',text:'Evenia Olympic Garden, pool og Costa Brava.',list:['Pool og drinks','All inclusive','Strandtid','Måske Barcelona','Aftenhygge'],map:'https://www.google.com/maps/search/Evenia+Olympic+Garden'},
  home:{title:'Hjemtur',img:'assets/cards/home.png',text:'Turen går nordpå igen med alle minderne.',list:['Tjek værelser','Pak bilen','Find god overnatning undervejs','Sidste ferie-is?'],map:'https://www.google.com/maps/dir/Evenia+Olympic+Garden/Herning'}
 };
-const modal=document.getElementById('infoModal'), modalImg=document.getElementById('modalImg'), modalTitle=document.getElementById('modalTitle'), modalText=document.getElementById('modalText'), modalList=document.getElementById('modalList'), modalMap=document.getElementById('modalMap'),
-modalLink=document.getElementById('modalLink');
-document.querySelectorAll('[data-info]').forEach(btn=>btn.addEventListener('click',()=>{const x=info[btn.dataset.info]; if(!x)return; modalImg.src=x.img; modalTitle.textContent=x.title; modalText.textContent=x.text; modalList.innerHTML=x.list.map(i=>'<li>'+i+'</li>').join(''); modalMap.href=x.map;
-modalLink.href=x.link || x.map;
-modal.showModal();));
+const modal=document.getElementById('infoModal'), modalImg=document.getElementById('modalImg'), modalTitle=document.getElementById('modalTitle'), modalText=document.getElementById('modalText'), modalList=document.getElementById('modalList'), modalMap=document.getElementById('modalMap');
+document.querySelectorAll('[data-info]').forEach(btn=>btn.addEventListener('click',()=>{const x=info[btn.dataset.info]; if(!x)return; modalImg.src=x.img; modalTitle.textContent=x.title; modalText.textContent=x.text; modalList.innerHTML=x.list.map(i=>'<li>'+i+'</li>').join(''); modalMap.href=x.map; modal.showModal();}));
 document.getElementById('closeModal').addEventListener('click',()=>modal.close());
 const departure=new Date('2026-07-06T10:00:00+02:00');
 function tick(){let diff=Math.max(0,departure-new Date());const d=Math.floor(diff/86400000);diff-=d*86400000;const h=Math.floor(diff/3600000);diff-=h*3600000;const m=Math.floor(diff/60000);diff-=m*60000;const s=Math.floor(diff/1000);cdDays.textContent=d;cdHours.textContent=h;cdMins.textContent=m;cdSecs.textContent=s} tick(); setInterval(tick,1000);
