@@ -111,7 +111,7 @@
         </div>
         <div class="quizList">
           <button class="quizItem locked" id="startRoadtrip1" type="button">🔒 Roadtrip Challenge 1 <small>10 spørgsmål · låst</small></button>
-          <button class="quizItem locked" type="button">🔒 Roadtrip Challenge 2 <small>Kommer senere</small></button>
+          <button class="quizItem locked" id="startRoadtrip2" type="button">🔒 Roadtrip Challenge 2 <small>10 spørgsmål · låst</small></button>
           <button class="quizItem locked" type="button">🔒 Disneyland Challenge <small>Kommer senere</small></button>
           <button class="quizItem locked" type="button">🔒 PSG Challenge <small>Kommer senere</small></button>
           <button class="quizItem locked" type="button">🔒 Lyon Challenge <small>Musée des Confluences · kommer senere</small></button>
@@ -170,32 +170,108 @@ bingoCode.addEventListener('keydown',e=>{if(e.key==='Enter') unlockBingo.click()
 function updateBingoStatus(){const buttons=[...document.querySelectorAll('[data-bingo]')];const done=buttons.filter(b=>b.classList.contains('done')).length;if(bingoStatus)bingoStatus.textContent=done+' af '+buttons.length+' felter klaret';}
 document.querySelectorAll('[data-bingo]').forEach(btn=>{const k='trip-bingo-'+btn.dataset.bingo;btn.classList.toggle('done',localStorage.getItem(k)==='1');btn.addEventListener('click',()=>{if(localStorage.getItem('trip-bingo-unlocked')!=='1')return;btn.classList.toggle('done');localStorage.setItem(k,btn.classList.contains('done')?'1':'0');updateBingoStatus();})});
 
-const roadtripQuiz=[
- {q:'Hvilket land kommer vi ind i først, når vi kører sydpå fra Danmark?',a:['Sverige','Tyskland','Holland','Belgien'],correct:1,explain:'Tyskland er første land efter Danmark på vejen mod Paris.'},
- {q:'Hvad er det vigtigste at købe i grænsebutikken?',a:['Sodavand','Slik','Rødvin','Nutella'],correct:null,explain:'Diskussion tilladt! Her tæller alle svar som ferie-godkendte 😄'},
- {q:'Hvor mange hjul har vores Tesla med på ferien?',a:['4','5','6','Det afhænger af om Henrik har pakket reservehjul'],correct:0,explain:'Tesla Model Y har normalt ikke reservehjul med, så svaret er 4 hjul.'},
- {q:'Hvor langt er der cirka fra Herning til Disneyland Paris?',a:['600 km','900 km','1.250 km','1.800 km'],correct:2,explain:'Der er cirka 1.200-1.300 km afhængigt af ruten.'},
- {q:'Hvor mange personer er der i besætningen?',a:['3','4','5','6'],correct:1,explain:'Besætningen er Henrik, Norah, August og Bertram.'},
- {q:'Hvis Teslaen bruger cirka 18 kWh pr. 100 km, hvor meget bruger den så på 1.000 km?',a:['18 kWh','90 kWh','180 kWh','250 kWh'],correct:2,explain:'18 kWh x 10 = 180 kWh.'},
- {q:'Hvor mange lande besøger vi på hele turen?',a:['2','3','4','5'],correct:2,explain:'Danmark, Tyskland, Frankrig og Spanien.'},
- {q:'Hvor mange Supercharger-stop tror du vi skal bruge på vej til Disneyland?',a:['0','1','2','3-4'],correct:3,explain:'På så lang en tur er 3-4 ladestop et realistisk bud.'},
- {q:'Hvis vi kører 110 km/t i gennemsnit, hvor lang tid tager 1.100 km cirka?',a:['5 timer','8 timer','10 timer','15 timer'],correct:2,explain:'1.100 km / 110 km/t = cirka 10 timer uden pauser.'},
- {q:'Hvem siger først: “Er vi der snart?”',a:['Norah','August','Bertram','Henrik'],correct:null,explain:'Den her afgøres først i bilen. Alle svar tæller 😄'}
-];
-const quizHome=document.getElementById('quizHome'), quizPlay=document.getElementById('quizPlay'), quizResult=document.getElementById('quizResult'), quizCode=document.getElementById('quizCode'), unlockQuiz=document.getElementById('unlockQuiz'), quizCodeError=document.getElementById('quizCodeError'), startRoadtrip1=document.getElementById('startRoadtrip1'), quizProgress=document.getElementById('quizProgress'), quizScore=document.getElementById('quizScore'), quizQuestion=document.getElementById('quizQuestion'), quizAnswers=document.getElementById('quizAnswers'), quizFeedback=document.getElementById('quizFeedback'), checkAnswer=document.getElementById('checkAnswer'), nextQuestion=document.getElementById('nextQuestion'), backToQuizHome=document.getElementById('backToQuizHome'), finalScore=document.getElementById('finalScore'), finalBadge=document.getElementById('finalBadge'), finalText=document.getElementById('finalText'), restartQuiz=document.getElementById('restartQuiz'), resultHome=document.getElementById('resultHome');
-let quizIndex=0, quizPoints=0, selectedAnswer=null, answered=false;
-function updateQuizLock(){const unlocked=localStorage.getItem('quiz-roadtrip1-unlocked')==='1';if(unlocked){startRoadtrip1.classList.remove('locked');startRoadtrip1.innerHTML='🚗 Roadtrip Challenge 1 <small>10 spørgsmål · start quiz</small>';}}
-updateQuizLock();
-unlockQuiz.addEventListener('click',()=>{if(quizCode.value.trim().toUpperCase()==='START'){localStorage.setItem('quiz-roadtrip1-unlocked','1');quizCodeError.style.display='none';updateQuizLock();}else{quizCodeError.style.display='block';}});
+const quizzes={
+ roadtrip1:{
+  code:'START',
+  storage:'quiz-roadtrip1-unlocked',
+  button:'startRoadtrip1',
+  title:'🚗 Roadtrip Challenge 1',
+  badgeLow:'🚗 Roadtrip Rookie',
+  badgeMid:'⚡ Roadtrip Expert',
+  badgeHigh:'🏆 Roadtrip Champion',
+  midText:'Stærkt! Du har ret godt styr på ruten.',
+  highText:'Perfekt score! Kaptajnen er imponeret.',
+  questions:[
+   {q:'Hvilket land kommer vi ind i først, når vi kører sydpå fra Danmark?',a:['Sverige','Tyskland','Holland','Belgien'],correct:1,explain:'Tyskland er første land efter Danmark på vejen mod Paris.'},
+   {q:'Hvad er det vigtigste at købe i grænsebutikken?',a:['Sodavand','Slik','Rødvin','Nutella'],correct:null,explain:'Diskussion tilladt! Her tæller alle svar som ferie-godkendte 😄'},
+   {q:'Hvor mange hjul har vores Tesla med på ferien?',a:['4','5','6','Det afhænger af om Henrik har pakket reservehjul'],correct:0,explain:'Tesla Model Y har normalt ikke reservehjul med, så svaret er 4 hjul.'},
+   {q:'Hvor langt er der cirka fra Herning til Disneyland Paris?',a:['600 km','900 km','1.250 km','1.800 km'],correct:2,explain:'Der er cirka 1.200-1.300 km afhængigt af ruten.'},
+   {q:'Hvor mange personer er der i besætningen?',a:['3','4','5','6'],correct:1,explain:'Besætningen er Henrik, Norah, August og Bertram.'},
+   {q:'Hvis Teslaen bruger cirka 18 kWh pr. 100 km, hvor meget bruger den så på 1.000 km?',a:['18 kWh','90 kWh','180 kWh','250 kWh'],correct:2,explain:'18 kWh x 10 = 180 kWh.'},
+   {q:'Hvor mange lande besøger vi på hele turen?',a:['2','3','4','5'],correct:2,explain:'Danmark, Tyskland, Frankrig og Spanien.'},
+   {q:'Hvor mange Supercharger-stop tror du vi skal bruge på vej til Disneyland?',a:['0','1','2','3-4'],correct:3,explain:'På så lang en tur er 3-4 ladestop et realistisk bud.'},
+   {q:'Hvis vi kører 110 km/t i gennemsnit, hvor lang tid tager 1.100 km cirka?',a:['5 timer','8 timer','10 timer','15 timer'],correct:2,explain:'1.100 km / 110 km/t = cirka 10 timer uden pauser.'},
+   {q:'Hvem siger først: “Er vi der snart?”',a:['Norah','August','Bertram','Henrik'],correct:null,explain:'Den her afgøres først i bilen. Alle svar tæller 😄'}
+  ]
+ },
+ roadtrip2:{
+  code:'PARIS',
+  storage:'quiz-roadtrip2-unlocked',
+  button:'startRoadtrip2',
+  title:'🗼 Roadtrip Challenge 2',
+  badgeLow:'🚗 Roadtrip Rookie',
+  badgeMid:'⚡ Paris Explorer',
+  badgeHigh:'🗼 Paris Master',
+  midText:'Flot! Du er klar til Paris.',
+  highText:'Imponerende! Du er næsten lokal Paris-guide.',
+  questions:[
+   {q:'Hvor mange indbyggere bor der cirka i selve Paris?',a:['500.000','2 millioner','8 millioner','20 millioner'],correct:1,explain:'Selve Paris har omkring 2 millioner indbyggere. Stor-Paris er meget større.'},
+   {q:'Hvor høj er Eiffeltårnet?',a:['124 m','220 m','330 m','500 m'],correct:2,explain:'Eiffeltårnet er cirka 330 meter højt.'},
+   {q:'Hvis vi stod på toppen af Eiffeltårnet, hvor langt tror du vi kunne se på en klar dag?',a:['5 km','20 km','50 km','100 km'],correct:2,explain:'På en klar dag kan man se virkelig langt ud over Paris – omkring 50 km er et godt bud.'},
+   {q:'Hvor mange besøger Disneyland Paris hvert år?',a:['1 million','5 millioner','10 millioner','15 millioner+'],correct:3,explain:'Disneyland Paris er en af Europas mest besøgte turistattraktioner.'},
+   {q:'Hvilken ride glæder du dig mest til?',a:['Big Thunder Mountain','Hyperspace Mountain','Tower of Terror','Avengers Assemble'],correct:null,explain:'Her findes der ingen forkerte svar. Det vigtigste er at glæde sig 😄'},
+   {q:'Hvad blev Eiffeltårnet oprindeligt bygget til?',a:['Som kongeslot','Som radiomast','Som verdensudstilling','Som stadion'],correct:2,explain:'Eiffeltårnet blev bygget til verdensudstillingen i Paris i 1889.'},
+   {q:'Hvis en Supercharger lader med 250 kW, hvor meget strøm kan den teoretisk give på 30 minutter?',a:['25 kWh','75 kWh','125 kWh','250 kWh'],correct:2,explain:'250 kW i en halv time er 125 kWh. Det er regnestykket: 250 x 0,5.'},
+   {q:'Hvad tror du bliver det første vi ser af Paris?',a:['Eiffeltårnet','Trafik','En croissant','En PSG-trøje'],correct:null,explain:'Det finder vi først ud af når vi kommer frem. Alle svar tæller 😄'},
+   {q:'Hvilket af disse dyr er IKKE i Disneyland-logoet?',a:['Mus','And','Hund','Dinosaur'],correct:3,explain:'Mickey, Anders And og Pluto er Disney-figurer. Dinosauren må blive hjemme.'},
+   {q:'Hvilken flod løber gennem Paris?',a:['Rhinen','Seinen','Donau','Themsen'],correct:1,explain:'Seinen løber gennem Paris, og mange kendte seværdigheder ligger langs floden.'}
+  ]
+ }
+};
+const quizHome=document.getElementById('quizHome'), quizPlay=document.getElementById('quizPlay'), quizResult=document.getElementById('quizResult'), quizCode=document.getElementById('quizCode'), unlockQuiz=document.getElementById('unlockQuiz'), quizCodeError=document.getElementById('quizCodeError'), startRoadtrip1=document.getElementById('startRoadtrip1'), startRoadtrip2=document.getElementById('startRoadtrip2'), quizProgress=document.getElementById('quizProgress'), quizScore=document.getElementById('quizScore'), quizQuestion=document.getElementById('quizQuestion'), quizAnswers=document.getElementById('quizAnswers'), quizFeedback=document.getElementById('quizFeedback'), checkAnswer=document.getElementById('checkAnswer'), nextQuestion=document.getElementById('nextQuestion'), backToQuizHome=document.getElementById('backToQuizHome'), finalScore=document.getElementById('finalScore'), finalBadge=document.getElementById('finalBadge'), finalText=document.getElementById('finalText'), restartQuiz=document.getElementById('restartQuiz'), resultHome=document.getElementById('resultHome');
+let quizIndex=0, quizPoints=0, selectedAnswer=null, answered=false, currentQuizKey='roadtrip1';
+function updateQuizLocks(){
+ Object.keys(quizzes).forEach(key=>{
+  const qz=quizzes[key];
+  const btn=document.getElementById(qz.button);
+  if(!btn)return;
+  const unlocked=localStorage.getItem(qz.storage)==='1';
+  if(unlocked){
+   btn.classList.remove('locked');
+   btn.innerHTML=qz.title+' <small>'+qz.questions.length+' spørgsmål · start quiz</small>';
+  }
+ });
+}
+updateQuizLocks();
+unlockQuiz.addEventListener('click',()=>{
+ const entered=quizCode.value.trim().toUpperCase();
+ let found=false;
+ Object.keys(quizzes).forEach(key=>{
+  const qz=quizzes[key];
+  if(entered===qz.code){
+   localStorage.setItem(qz.storage,'1');
+   found=true;
+  }
+ });
+ if(found){
+  quizCodeError.style.display='none';
+  quizCode.value='';
+  updateQuizLocks();
+ }else{
+  quizCodeError.style.display='block';
+ }
+});
 quizCode.addEventListener('keydown',e=>{if(e.key==='Enter') unlockQuiz.click();});
-startRoadtrip1.addEventListener('click',()=>{if(localStorage.getItem('quiz-roadtrip1-unlocked')!=='1'){quizCodeError.style.display='block';return;}startQuiz();});
-function startQuiz(){quizIndex=0;quizPoints=0;selectedAnswer=null;answered=false;quizHome.classList.add('lockedHidden');quizResult.classList.add('lockedHidden');quizPlay.classList.remove('lockedHidden');renderQuestion();}
-function renderQuestion(){const q=roadtripQuiz[quizIndex];selectedAnswer=null;answered=false;quizProgress.textContent='Spørgsmål '+(quizIndex+1)+' af '+roadtripQuiz.length;quizScore.textContent=quizPoints+' point';quizQuestion.textContent=q.q;quizFeedback.style.display='none';checkAnswer.classList.remove('lockedHidden');nextQuestion.classList.add('lockedHidden');quizAnswers.innerHTML=q.a.map((txt,i)=>'<button class="answerBtn" type="button" data-answer="'+i+'">'+String.fromCharCode(65+i)+') '+txt+'</button>').join('');document.querySelectorAll('[data-answer]').forEach(btn=>btn.addEventListener('click',()=>{if(answered)return;document.querySelectorAll('[data-answer]').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');selectedAnswer=Number(btn.dataset.answer);}));}
-checkAnswer.addEventListener('click',()=>{if(selectedAnswer===null)return;const q=roadtripQuiz[quizIndex];answered=true;const buttons=[...document.querySelectorAll('[data-answer]')];let correct=q.correct===null || selectedAnswer===q.correct;if(correct)quizPoints++;buttons.forEach((btn,i)=>{if(q.correct!==null && i===q.correct)btn.classList.add('correct');if(i===selectedAnswer && !correct)btn.classList.add('wrong');});quizFeedback.innerHTML=(correct?'✅ <b>Godkendt!</b> ':'😅 <b>Ikke helt.</b> ')+q.explain;quizFeedback.style.display='block';quizScore.textContent=quizPoints+' point';checkAnswer.classList.add('lockedHidden');nextQuestion.classList.remove('lockedHidden');});
-nextQuestion.addEventListener('click',()=>{quizIndex++;if(quizIndex>=roadtripQuiz.length)showResult();else renderQuestion();});
-function showResult(){quizPlay.classList.add('lockedHidden');quizResult.classList.remove('lockedHidden');finalScore.textContent=quizPoints+'/'+roadtripQuiz.length;localStorage.setItem('quiz-roadtrip1-score',quizPoints);let badge='🚗 Roadtrip Rookie';let text='Godt kørt! I er i gang med Sommerferie Cup.';if(quizPoints>=8){badge='⚡ Roadtrip Expert';text='Stærkt! Du har ret godt styr på ruten.';}if(quizPoints===roadtripQuiz.length){badge='🏆 Roadtrip Champion';text='Perfekt score! Kaptajnen er imponeret.';}finalBadge.textContent=badge;finalText.textContent=text;}
+function setupQuizButton(key){
+ const qz=quizzes[key];
+ const btn=document.getElementById(qz.button);
+ if(!btn)return;
+ btn.addEventListener('click',()=>{
+  if(localStorage.getItem(qz.storage)!=='1'){
+   quizCodeError.style.display='block';
+   return;
+  }
+  startQuiz(key);
+ });
+}
+Object.keys(quizzes).forEach(setupQuizButton);
+function startQuiz(key){currentQuizKey=key;quizIndex=0;quizPoints=0;selectedAnswer=null;answered=false;quizHome.classList.add('lockedHidden');quizResult.classList.add('lockedHidden');quizPlay.classList.remove('lockedHidden');renderQuestion();}
+function renderQuestion(){const qz=quizzes[currentQuizKey];const q=qz.questions[quizIndex];selectedAnswer=null;answered=false;quizProgress.textContent=qz.title+' · Spørgsmål '+(quizIndex+1)+' af '+qz.questions.length;quizScore.textContent=quizPoints+' point';quizQuestion.textContent=q.q;quizFeedback.style.display='none';checkAnswer.classList.remove('lockedHidden');nextQuestion.classList.add('lockedHidden');quizAnswers.innerHTML=q.a.map((txt,i)=>'<button class="answerBtn" type="button" data-answer="'+i+'">'+String.fromCharCode(65+i)+') '+txt+'</button>').join('');document.querySelectorAll('[data-answer]').forEach(btn=>btn.addEventListener('click',()=>{if(answered)return;document.querySelectorAll('[data-answer]').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');selectedAnswer=Number(btn.dataset.answer);}));}
+checkAnswer.addEventListener('click',()=>{if(selectedAnswer===null)return;const q=quizzes[currentQuizKey].questions[quizIndex];answered=true;const buttons=[...document.querySelectorAll('[data-answer]')];let correct=q.correct===null || selectedAnswer===q.correct;if(correct)quizPoints++;buttons.forEach((btn,i)=>{if(q.correct!==null && i===q.correct)btn.classList.add('correct');if(i===selectedAnswer && !correct)btn.classList.add('wrong');});quizFeedback.innerHTML=(correct?'✅ <b>Godkendt!</b> ':'😅 <b>Ikke helt.</b> ')+q.explain;quizFeedback.style.display='block';quizScore.textContent=quizPoints+' point';checkAnswer.classList.add('lockedHidden');nextQuestion.classList.remove('lockedHidden');});
+nextQuestion.addEventListener('click',()=>{quizIndex++;if(quizIndex>=quizzes[currentQuizKey].questions.length)showResult();else renderQuestion();});
+function showResult(){const qz=quizzes[currentQuizKey];quizPlay.classList.add('lockedHidden');quizResult.classList.remove('lockedHidden');finalScore.textContent=quizPoints+'/'+qz.questions.length;localStorage.setItem(currentQuizKey+'-score',quizPoints);let badge=qz.badgeLow;let text='Godt kørt! I er i gang med Sommerferie Cup.';if(quizPoints>=6){badge=qz.badgeMid;text=qz.midText;}if(quizPoints>=9){badge=qz.badgeHigh;text=qz.highText;}finalBadge.textContent=badge;finalText.textContent=text;}
 backToQuizHome.addEventListener('click',()=>{quizPlay.classList.add('lockedHidden');quizHome.classList.remove('lockedHidden');});
-restartQuiz.addEventListener('click',startQuiz);
+restartQuiz.addEventListener('click',()=>startQuiz(currentQuizKey));
 resultHome.addEventListener('click',()=>{quizResult.classList.add('lockedHidden');quizHome.classList.remove('lockedHidden');});
 const diary=document.getElementById('diary');diary.value=localStorage.getItem('trip-diary')||'';diary.addEventListener('input',()=>localStorage.setItem('trip-diary',diary.value));
 </script>
