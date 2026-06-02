@@ -25,6 +25,29 @@
     .codeError{display:none;margin-top:10px;color:#d62828;font-weight:800}
     .lockedHidden{display:none}
     .bingoStatus{margin:10px 0 0;color:white;text-align:center;font-size:13px;opacity:.9}
+
+    .quizCard{background:rgba(255,255,255,.96);border-radius:24px;padding:18px;box-shadow:var(--shadow);color:var(--text)}
+    .quizCard h3{margin:4px 0 8px;font-size:22px}
+    .quizCard p{margin:0 0 14px;color:var(--muted);line-height:1.35}
+    .quizList{display:grid;gap:10px}
+    .quizItem{border:1px solid #e0ebf7;background:#fff;border-radius:18px;padding:14px;text-align:left;font-weight:950;color:var(--text);box-shadow:0 4px 12px rgba(7,29,67,.07)}
+    .quizItem small{display:block;color:var(--muted);font-weight:800;margin-top:3px}
+    .quizItem.locked{opacity:.72}
+    .quizQuestion{font-size:20px;font-weight:950;line-height:1.2;margin:10px 0 14px}
+    .quizMeta{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.04em}
+    .answers{display:grid;gap:10px;margin:14px 0}
+    .answerBtn{border:1px solid #dce8f5;background:#fff;border-radius:16px;padding:13px;text-align:left;font-size:15px;font-weight:850;color:var(--text)}
+    .answerBtn.selected{border-color:var(--blue);box-shadow:0 0 0 3px rgba(8,136,255,.14)}
+    .answerBtn.correct{background:#e9fff6;border-color:#15b87a}
+    .answerBtn.wrong{background:#fff0f0;border-color:#ee6b6e}
+    .quizActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .primaryBtn,.ghostBtn{border:0;border-radius:16px;padding:12px 14px;font-weight:950}
+    .primaryBtn{background:var(--blue);color:white}
+    .ghostBtn{background:#eef6ff;color:#073169}
+    .feedback{display:none;margin-top:12px;border-radius:16px;padding:12px;background:#f4f9ff;color:#31516f;font-weight:750;line-height:1.35}
+    .resultBox{text-align:center}
+    .resultScore{font-size:48px;font-weight:950;color:var(--blue);margin:10px 0}
+    .badge{display:inline-block;border-radius:999px;background:#fff4ce;color:#6d4c00;padding:8px 12px;font-weight:950;margin:6px 0 12px}
     @media(max-width:380px){.countdown{grid-template-columns:1fr}.time b{font-size:20px}.crew{gap:6px}.dayContent{width:80%}.stop{min-width:96px}}
   </style>
 </head>
@@ -44,7 +67,7 @@
     <section id="crew"><div class="sectionTitle">👨‍👧‍👦 Besætningen</div><div class="crew">
       <div><img src="assets/henrik.jpeg" alt="Henrik"><div class="crewName">Henrik</div></div><div><img src="assets/norah.jpeg" alt="Norah"><div class="crewName">Norah</div></div><div><img src="assets/august.jpeg" alt="August"><div class="crewName">August</div></div><div><img src="assets/bertram.jpeg" alt="Bertram"><div class="crewName">Bertram</div></div>
     </div></section>
-    <section><div class="grid"><a class="tile photo" href="#plan"><img src="assets/day03.png" alt="Roadtrip"><div><h3>📅 Dagsplan</h3><p>Se rejsen dag for dag</p></div></a><a class="tile" href="https://www.google.com/maps/dir/Herning/Disneyland+Paris/Lyon/Evenia+Olympic+Garden" target="_blank" rel="noreferrer"><div class="bigIcon">🧭</div><h3>Næste stop</h3><p>Åbn ruten i Google Maps</p></a><a class="tile" href="#bingo"><div class="bigIcon">🏆</div><h3>Feriebingo</h3><p>Kryds oplevelser af undervejs</p></a><a class="tile" href="#notes"><div class="bigIcon">✍️</div><h3>Rejsedagbog</h3><p>Skriv minder og sjove historier</p></a></div></section>
+    <section><div class="grid"><a class="tile photo" href="#plan"><img src="assets/day03.png" alt="Roadtrip"><div><h3>📅 Dagsplan</h3><p>Se rejsen dag for dag</p></div></a><a class="tile" href="https://www.google.com/maps/dir/Herning/Disneyland+Paris/Lyon/Evenia+Olympic+Garden" target="_blank" rel="noreferrer"><div class="bigIcon">🧭</div><h3>Næste stop</h3><p>Åbn ruten i Google Maps</p></a><a class="tile" href="#bingo"><div class="bigIcon">🏆</div><h3>Feriebingo</h3><p>Kryds oplevelser af undervejs</p></a><a class="tile" href="#quiz"><div class="bigIcon">🧠</div><h3>Quizcenter</h3><p>Låste feriequizzer og point</p></a><a class="tile" href="#notes"><div class="bigIcon">✍️</div><h3>Rejsedagbog</h3><p>Skriv minder og sjove historier</p></a></div></section>
     <section id="plan"><div class="sectionTitle">📅 Dagsplan</div><div class="days">
       <article class="dayCard"><img src="assets/day01.png" alt="Overnatning"><div class="dayContent"><div><div class="dayNo">01</div><h2>Overnatning</h2><p>Mandag 6. juli. Afgang fra Herning, grænsehandel og første overnatning på vej mod Paris.</p></div><button class="moreBtn" data-info="denmark">Se mere</button></div></article>
       <article class="dayCard"><img src="assets/day02.png" alt="Disneyland"><div class="dayContent"><div><div class="dayNo">02</div><h2>Disneyland</h2><p>Onsdag og torsdag: to fulde dage med rides, shows og Disney-stemning.</p></div><button class="moreBtn" data-info="disneyland">Rides</button></div></article>
@@ -68,6 +91,47 @@
       <div id="bingoGame" class="lockedHidden">
         <div class="bingo"><button data-bingo="croissant">🥐<span>Spis croissant</span></button><button data-bingo="selfie">📸<span>Tag selfie</span></button><button data-bingo="ride">🎢<span>Prøv et ride</span></button><button data-bingo="psg">⚽<span>PSG-billede</span></button><button data-bingo="pool">🏊<span>Pooltid</span></button><button data-bingo="ice">🍦<span>Spis is</span></button><button data-bingo="tesla">🔌<span>Ladepause</span></button><button data-bingo="sunset">🌅<span>Solnedgang</span></button><button data-bingo="souvenir">🛍️<span>Souvenir</span></button></div>
         <div class="bingoStatus" id="bingoStatus">0 af 9 felter klaret</div>
+      </div>
+    </section>
+    <section id="quiz"><div class="sectionTitle">🧠 Quizcenter</div>
+      <div id="quizHome" class="quizCard">
+        <h3>Sommerferie Cup 2026</h3>
+        <p>Quizzerne låses op undervejs. Første quiz åbnes med koden <b>START</b>.</p>
+        <div class="codeRow">
+          <input id="quizCode" maxlength="12" placeholder="Kode" />
+          <button id="unlockQuiz" type="button">Lås op</button>
+        </div>
+        <div id="quizCodeError" class="codeError">Ikke endnu 😎</div>
+        <br>
+        <div class="quizList">
+          <button class="quizItem locked" id="startRoadtrip1" type="button">🔒 Roadtrip Challenge 1 <small>10 spørgsmål · låst</small></button>
+          <button class="quizItem locked" type="button">🔒 Roadtrip Challenge 2 <small>Kommer senere</small></button>
+          <button class="quizItem locked" type="button">🔒 Disneyland Challenge 1 <small>Kommer senere</small></button>
+          <button class="quizItem locked" type="button">🔒 Disneyland Challenge 2 <small>Kommer senere</small></button>
+          <button class="quizItem locked" type="button">🔒 PSG Challenge <small>Kommer senere</small></button>
+          <button class="quizItem locked" type="button">🔒 Spanien Challenge <small>Kommer senere</small></button>
+        </div>
+      </div>
+      <div id="quizPlay" class="quizCard lockedHidden">
+        <div class="quizMeta"><span id="quizProgress">Spørgsmål 1 af 10</span><span id="quizScore">0 point</span></div>
+        <div class="quizQuestion" id="quizQuestion"></div>
+        <div class="answers" id="quizAnswers"></div>
+        <div class="feedback" id="quizFeedback"></div>
+        <div class="quizActions">
+          <button class="primaryBtn" id="checkAnswer" type="button">Svar</button>
+          <button class="primaryBtn lockedHidden" id="nextQuestion" type="button">Næste</button>
+          <button class="ghostBtn" id="backToQuizHome" type="button">Tilbage</button>
+        </div>
+      </div>
+      <div id="quizResult" class="quizCard lockedHidden resultBox">
+        <h3>🏆 Resultat</h3>
+        <div class="resultScore" id="finalScore">0/10</div>
+        <div class="badge" id="finalBadge">Roadtrip Rookie</div>
+        <p id="finalText">Godt kørt!</p>
+        <div class="quizActions" style="justify-content:center">
+          <button class="primaryBtn" id="restartQuiz" type="button">Prøv igen</button>
+          <button class="ghostBtn" id="resultHome" type="button">Quizcenter</button>
+        </div>
       </div>
     </section>
     <section id="notes"><div class="sectionTitle">✍️ Rejsedagbog</div><textarea id="diary" class="note" placeholder="Skriv sjove minder her..."></textarea></section>
@@ -98,6 +162,34 @@ unlockBingo.addEventListener('click',()=>{if(bingoCode.value.trim()==='1234'){lo
 bingoCode.addEventListener('keydown',e=>{if(e.key==='Enter') unlockBingo.click();});
 function updateBingoStatus(){const buttons=[...document.querySelectorAll('[data-bingo]')];const done=buttons.filter(b=>b.classList.contains('done')).length;if(bingoStatus)bingoStatus.textContent=done+' af '+buttons.length+' felter klaret';}
 document.querySelectorAll('[data-bingo]').forEach(btn=>{const k='trip-bingo-'+btn.dataset.bingo;btn.classList.toggle('done',localStorage.getItem(k)==='1');btn.addEventListener('click',()=>{if(localStorage.getItem('trip-bingo-unlocked')!=='1')return;btn.classList.toggle('done');localStorage.setItem(k,btn.classList.contains('done')?'1':'0');updateBingoStatus();})});
+
+const roadtripQuiz=[
+ {q:'Hvilket land kommer vi ind i først, når vi kører sydpå fra Danmark?',a:['Sverige','Tyskland','Holland','Belgien'],correct:1,explain:'Tyskland er første land efter Danmark på vejen mod Paris.'},
+ {q:'Hvad er det vigtigste at købe i grænsebutikken?',a:['Sodavand','Slik','Rødvin','Nutella'],correct:null,explain:'Diskussion tilladt! Her tæller alle svar som ferie-godkendte 😄'},
+ {q:'Hvor mange hjul har vores Tesla med på ferien?',a:['4','5','6','Det afhænger af om Henrik har pakket reservehjul'],correct:0,explain:'Tesla Model Y har normalt ikke reservehjul med, så svaret er 4 hjul.'},
+ {q:'Hvor langt er der cirka fra Herning til Disneyland Paris?',a:['600 km','900 km','1.250 km','1.800 km'],correct:2,explain:'Der er cirka 1.200-1.300 km afhængigt af ruten.'},
+ {q:'Hvor mange personer er der i besætningen?',a:['3','4','5','6'],correct:1,explain:'Besætningen er Henrik, Norah, August og Bertram.'},
+ {q:'Hvis Teslaen bruger cirka 18 kWh pr. 100 km, hvor meget bruger den så på 1.000 km?',a:['18 kWh','90 kWh','180 kWh','250 kWh'],correct:2,explain:'18 kWh x 10 = 180 kWh.'},
+ {q:'Hvor mange lande besøger vi på hele turen?',a:['2','3','4','5'],correct:2,explain:'Danmark, Tyskland, Frankrig og Spanien.'},
+ {q:'Hvor mange Supercharger-stop tror du vi skal bruge på vej til Disneyland?',a:['0','1','2','3-4'],correct:3,explain:'På så lang en tur er 3-4 ladestop et realistisk bud.'},
+ {q:'Hvis vi kører 110 km/t i gennemsnit, hvor lang tid tager 1.100 km cirka?',a:['5 timer','8 timer','10 timer','15 timer'],correct:2,explain:'1.100 km / 110 km/t = cirka 10 timer uden pauser.'},
+ {q:'Hvem siger først: “Er vi der snart?”',a:['Norah','August','Bertram','Henrik'],correct:null,explain:'Den her afgøres først i bilen. Alle svar tæller 😄'}
+];
+const quizHome=document.getElementById('quizHome'), quizPlay=document.getElementById('quizPlay'), quizResult=document.getElementById('quizResult'), quizCode=document.getElementById('quizCode'), unlockQuiz=document.getElementById('unlockQuiz'), quizCodeError=document.getElementById('quizCodeError'), startRoadtrip1=document.getElementById('startRoadtrip1'), quizProgress=document.getElementById('quizProgress'), quizScore=document.getElementById('quizScore'), quizQuestion=document.getElementById('quizQuestion'), quizAnswers=document.getElementById('quizAnswers'), quizFeedback=document.getElementById('quizFeedback'), checkAnswer=document.getElementById('checkAnswer'), nextQuestion=document.getElementById('nextQuestion'), backToQuizHome=document.getElementById('backToQuizHome'), finalScore=document.getElementById('finalScore'), finalBadge=document.getElementById('finalBadge'), finalText=document.getElementById('finalText'), restartQuiz=document.getElementById('restartQuiz'), resultHome=document.getElementById('resultHome');
+let quizIndex=0, quizPoints=0, selectedAnswer=null, answered=false;
+function updateQuizLock(){const unlocked=localStorage.getItem('quiz-roadtrip1-unlocked')==='1';if(unlocked){startRoadtrip1.classList.remove('locked');startRoadtrip1.innerHTML='🚗 Roadtrip Challenge 1 <small>10 spørgsmål · start quiz</small>';}}
+updateQuizLock();
+unlockQuiz.addEventListener('click',()=>{if(quizCode.value.trim().toUpperCase()==='START'){localStorage.setItem('quiz-roadtrip1-unlocked','1');quizCodeError.style.display='none';updateQuizLock();}else{quizCodeError.style.display='block';}});
+quizCode.addEventListener('keydown',e=>{if(e.key==='Enter') unlockQuiz.click();});
+startRoadtrip1.addEventListener('click',()=>{if(localStorage.getItem('quiz-roadtrip1-unlocked')!=='1'){quizCodeError.style.display='block';return;}startQuiz();});
+function startQuiz(){quizIndex=0;quizPoints=0;selectedAnswer=null;answered=false;quizHome.classList.add('lockedHidden');quizResult.classList.add('lockedHidden');quizPlay.classList.remove('lockedHidden');renderQuestion();}
+function renderQuestion(){const q=roadtripQuiz[quizIndex];selectedAnswer=null;answered=false;quizProgress.textContent='Spørgsmål '+(quizIndex+1)+' af '+roadtripQuiz.length;quizScore.textContent=quizPoints+' point';quizQuestion.textContent=q.q;quizFeedback.style.display='none';checkAnswer.classList.remove('lockedHidden');nextQuestion.classList.add('lockedHidden');quizAnswers.innerHTML=q.a.map((txt,i)=>'<button class="answerBtn" type="button" data-answer="'+i+'">'+String.fromCharCode(65+i)+') '+txt+'</button>').join('');document.querySelectorAll('[data-answer]').forEach(btn=>btn.addEventListener('click',()=>{if(answered)return;document.querySelectorAll('[data-answer]').forEach(b=>b.classList.remove('selected'));btn.classList.add('selected');selectedAnswer=Number(btn.dataset.answer);}));}
+checkAnswer.addEventListener('click',()=>{if(selectedAnswer===null)return;const q=roadtripQuiz[quizIndex];answered=true;const buttons=[...document.querySelectorAll('[data-answer]')];let correct=q.correct===null || selectedAnswer===q.correct;if(correct)quizPoints++;buttons.forEach((btn,i)=>{if(q.correct!==null && i===q.correct)btn.classList.add('correct');if(i===selectedAnswer && !correct)btn.classList.add('wrong');});quizFeedback.innerHTML=(correct?'✅ <b>Godkendt!</b> ':'😅 <b>Ikke helt.</b> ')+q.explain;quizFeedback.style.display='block';quizScore.textContent=quizPoints+' point';checkAnswer.classList.add('lockedHidden');nextQuestion.classList.remove('lockedHidden');});
+nextQuestion.addEventListener('click',()=>{quizIndex++;if(quizIndex>=roadtripQuiz.length)showResult();else renderQuestion();});
+function showResult(){quizPlay.classList.add('lockedHidden');quizResult.classList.remove('lockedHidden');finalScore.textContent=quizPoints+'/'+roadtripQuiz.length;localStorage.setItem('quiz-roadtrip1-score',quizPoints);let badge='🚗 Roadtrip Rookie';let text='Godt kørt! I er i gang med Sommerferie Cup.';if(quizPoints>=8){badge='⚡ Roadtrip Expert';text='Stærkt! Du har ret godt styr på ruten.';}if(quizPoints===roadtripQuiz.length){badge='🏆 Roadtrip Champion';text='Perfekt score! Kaptajnen er imponeret.';}finalBadge.textContent=badge;finalText.textContent=text;}
+backToQuizHome.addEventListener('click',()=>{quizPlay.classList.add('lockedHidden');quizHome.classList.remove('lockedHidden');});
+restartQuiz.addEventListener('click',startQuiz);
+resultHome.addEventListener('click',()=>{quizResult.classList.add('lockedHidden');quizHome.classList.remove('lockedHidden');});
 const diary=document.getElementById('diary');diary.value=localStorage.getItem('trip-diary')||'';diary.addEventListener('input',()=>localStorage.setItem('trip-diary',diary.value));
 </script>
 </body>
