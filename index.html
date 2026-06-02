@@ -26,10 +26,14 @@
     .lockedHidden{display:none}
     .bingoStatus{margin:10px 0 0;color:white;text-align:center;font-size:13px;opacity:.9}
 
+    .quizHero{background:linear-gradient(135deg,#061735,#0b4da5 60%,#1592ff);border-radius:26px;padding:18px;box-shadow:var(--shadow);color:white;position:relative;overflow:hidden}
+    .quizHero:before{content:"";position:absolute;inset:-40px;background:radial-gradient(circle at 18% 25%,rgba(255,255,255,.22),transparent 18%),radial-gradient(circle at 85% 20%,rgba(255,186,8,.28),transparent 16%),radial-gradient(circle at 70% 90%,rgba(255,255,255,.14),transparent 20%);opacity:.9}
+    .quizHero>*{position:relative;z-index:1}
+    .quizHero h3{margin:0;font-size:24px;letter-spacing:.02em;text-transform:uppercase}
+    .quizRoute{font-size:22px;margin:10px 0 8px;letter-spacing:.08em}
+    .quizHero p{margin:0 0 14px;color:rgba(255,255,255,.86);line-height:1.35}
     .quizCard{background:rgba(255,255,255,.96);border-radius:24px;padding:18px;box-shadow:var(--shadow);color:var(--text)}
-    .quizCard h3{margin:4px 0 8px;font-size:22px}
-    .quizCard p{margin:0 0 14px;color:var(--muted);line-height:1.35}
-    .quizList{display:grid;gap:10px}
+    .quizList{display:grid;gap:10px;margin-top:14px}
     .quizItem{border:1px solid #e0ebf7;background:#fff;border-radius:18px;padding:14px;text-align:left;font-weight:950;color:var(--text);box-shadow:0 4px 12px rgba(7,29,67,.07)}
     .quizItem small{display:block;color:var(--muted);font-weight:800;margin-top:3px}
     .quizItem.locked{opacity:.72}
@@ -94,22 +98,25 @@
       </div>
     </section>
     <section id="quiz"><div class="sectionTitle">🧠 Quizcenter</div>
-      <div id="quizHome" class="quizCard">
-        <h3>Sommerferie Cup 2026</h3>
-        <p>Quizzerne låses op undervejs. Første quiz åbnes med koden <b>START</b>.</p>
-        <div class="codeRow">
-          <input id="quizCode" maxlength="12" placeholder="Kode" />
-          <button id="unlockQuiz" type="button">Lås op</button>
+      <div id="quizHome">
+        <div class="quizHero">
+          <h3>🏆 Sommerferie Cup 2026</h3>
+          <div class="quizRoute">🚗 → 🏰 → ⚽ → 🦖 → 🌴</div>
+          <p>Quizzerne låses op undervejs. Indtast koden når kaptajnen frigiver næste mission.</p>
+          <div class="codeRow">
+            <input id="quizCode" maxlength="12" placeholder="Kode" />
+            <button id="unlockQuiz" type="button">Lås op</button>
+          </div>
+          <div id="quizCodeError" class="codeError">Ikke endnu 😎</div>
         </div>
-        <div id="quizCodeError" class="codeError">Ikke endnu 😎</div>
-        <br>
         <div class="quizList">
           <button class="quizItem locked" id="startRoadtrip1" type="button">🔒 Roadtrip Challenge 1 <small>10 spørgsmål · låst</small></button>
           <button class="quizItem locked" type="button">🔒 Roadtrip Challenge 2 <small>Kommer senere</small></button>
-          <button class="quizItem locked" type="button">🔒 Disneyland Challenge 1 <small>Kommer senere</small></button>
-          <button class="quizItem locked" type="button">🔒 Disneyland Challenge 2 <small>Kommer senere</small></button>
+          <button class="quizItem locked" type="button">🔒 Disneyland Challenge <small>Kommer senere</small></button>
           <button class="quizItem locked" type="button">🔒 PSG Challenge <small>Kommer senere</small></button>
+          <button class="quizItem locked" type="button">🔒 Lyon Challenge <small>Musée des Confluences · kommer senere</small></button>
           <button class="quizItem locked" type="button">🔒 Spanien Challenge <small>Kommer senere</small></button>
+          <button class="quizItem locked" type="button">🔒 Bonus Challenge <small>Hemmelig mission</small></button>
         </div>
       </div>
       <div id="quizPlay" class="quizCard lockedHidden">
