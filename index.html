@@ -3,87 +3,121 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#061b3d" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Sommerferie 2026" />
-  <meta name="theme-color" content="#0ea5e9" />
   <title>Sommerferie 2026</title>
   <style>
-    :root{--bg:#07111f;--card:#101f34;--card2:#132a45;--text:#f8fafc;--muted:#b8c5d6;--accent:#38bdf8;--accent2:#fb7185;--ok:#34d399;--sun:#fbbf24;--line:rgba(255,255,255,.12);--shadow:0 18px 50px rgba(0,0,0,.25);}
-    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:radial-gradient(circle at 20% 0%,#12365a 0,#07111f 40%,#050914 100%);color:var(--text);padding-bottom:84px} a{color:inherit}.app{max-width:760px;margin:0 auto;min-height:100vh}.hero{position:relative;overflow:hidden;padding:calc(env(safe-area-inset-top) + 28px) 20px 22px;border-bottom:1px solid var(--line);background:linear-gradient(135deg,rgba(56,189,248,.24),rgba(251,113,133,.18)),radial-gradient(circle at 90% 10%,rgba(251,191,36,.35),transparent 28%)}.hero:after{content:"🚗";position:absolute;right:18px;top:38px;font-size:64px;opacity:.22;transform:rotate(-12deg)}.kicker{font-size:13px;color:#dbeafe;text-transform:uppercase;letter-spacing:.12em;font-weight:800}.hero h1{font-size:34px;line-height:1.04;margin:10px 0 8px}.hero p{margin:0;color:#d9e7f7;font-size:16px;line-height:1.45}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.chip{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);padding:8px 10px;border-radius:999px;font-size:13px;color:#eff6ff}.section{padding:18px 16px}.section h2{font-size:22px;margin:10px 4px 12px}.grid{display:grid;gap:12px}.card{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04));border:1px solid var(--line);border-radius:24px;padding:16px;box-shadow:var(--shadow);backdrop-filter:blur(12px)}.day{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:start}.datebox{width:56px;border-radius:18px;background:linear-gradient(160deg,var(--accent),#2563eb);text-align:center;padding:9px 4px;box-shadow:0 12px 30px rgba(14,165,233,.25)}.datebox b{display:block;font-size:22px;line-height:1}.datebox span{font-size:12px;font-weight:800;text-transform:uppercase}.day h3{margin:0 0 7px;font-size:18px}.meta{color:var(--muted);font-size:14px;margin-bottom:10px}.todo{list-style:none;padding:0;margin:0;display:grid;gap:8px}.todo li{display:flex;gap:9px;align-items:flex-start;color:#edf5ff;line-height:1.35}.todo input,.bingo input{accent-color:#22c55e;transform:scale(1.25);margin-top:2px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.btn{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.1);padding:10px 12px;border-radius:14px;text-decoration:none;font-weight:800;font-size:14px}.btn.primary{background:linear-gradient(135deg,var(--accent),#2563eb);border:0}.btn.pink{background:linear-gradient(135deg,var(--accent2),#f97316);border:0}.count{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stat{text-align:center}.stat .num{font-size:34px;font-weight:900}.stat .lbl{color:var(--muted);font-size:13px}.bingo{display:grid;grid-template-columns:1fr 1fr;gap:10px}.bingo label{background:rgba(255,255,255,.07);border:1px solid var(--line);border-radius:16px;padding:12px;min-height:70px;display:flex;gap:10px;align-items:flex-start}.small{font-size:13px;color:var(--muted);line-height:1.45}.tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;background:rgba(5,9,20,.86);backdrop-filter:blur(18px);border-top:1px solid var(--line);padding:8px 10px calc(env(safe-area-inset-bottom) + 8px)}.tabs nav{max-width:760px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.tabs a{text-decoration:none;text-align:center;font-size:12px;color:#e0f2fe;padding:8px 4px;border-radius:14px}.tabs a span{display:block;font-size:22px}.tabs a:active{background:rgba(255,255,255,.12)}.map{height:180px;border-radius:22px;background:linear-gradient(135deg,#0f766e,#0369a1);position:relative;overflow:hidden;border:1px solid var(--line)}.map svg{position:absolute;inset:0;width:100%;height:100%;opacity:.92}.note{border-left:4px solid var(--sun);padding-left:12px;color:#fff7ed}.install{background:rgba(251,191,36,.12);border-color:rgba(251,191,36,.35)}.footer{text-align:center;color:var(--muted);padding:26px 20px 36px;font-size:13px}@media (min-width:680px){.bingo{grid-template-columns:repeat(3,1fr)}.count{grid-template-columns:repeat(4,1fr)}}
+    :root{--navy:#071d43;--blue:#0888ff;--sky:#eaf6ff;--card:#fff;--text:#0a2148;--muted:#55708f;--gold:#ffba08;--green:#15b87a;--shadow:0 10px 30px rgba(7,29,67,.14);--radius:24px}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#f7fbff 0,#fff 38%,#eef7ff 100%);color:var(--text);padding-bottom:90px}.app{max-width:520px;margin:auto;min-height:100vh;background:white}.hero{position:relative;overflow:hidden;border-radius:0 0 28px 28px;box-shadow:var(--shadow);background:#d9efff}.hero img{width:100%;display:block}.countdown{margin:-45px 18px 20px;position:relative;z-index:2;background:linear-gradient(135deg,#06204c,#061735);color:white;border-radius:20px;box-shadow:0 14px 26px rgba(2,16,42,.25);display:flex;align-items:center;gap:14px;padding:16px}.cal{min-width:54px;height:54px;border-radius:18px;background:var(--blue);display:grid;place-items:center;font-size:28px}.countText{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.95}.time{display:flex;align-items:end;gap:12px;flex:1;justify-content:space-between}.time b{font-size:30px;line-height:1}.time span{display:block;font-size:11px;font-weight:700;opacity:.86;text-align:center}.sun{font-size:38px;color:var(--gold)}section{padding:0 18px 22px}.sectionTitle{display:flex;align-items:center;gap:8px;font-weight:900;text-transform:uppercase;letter-spacing:.02em;margin:16px 0 12px;font-size:17px}.route{display:flex;overflow-x:auto;gap:10px;padding-bottom:8px;scroll-snap-type:x mandatory}.stop{min-width:120px;scroll-snap-align:start;background:#fff;border:1px solid #e6eef8;border-radius:20px;box-shadow:0 6px 16px rgba(7,29,67,.08);padding:14px;text-align:center}.stop .icon{font-size:30px}.stop b{display:block;font-size:13px;margin:8px 0 4px}.stop small{color:var(--muted);font-weight:700}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tile{border:1px solid #e7eef7;border-radius:22px;background:white;box-shadow:0 6px 18px rgba(7,29,67,.08);padding:14px;min-height:130px;overflow:hidden;position:relative}.tile h3{margin:4px 0 6px;font-size:16px}.tile p{margin:0;color:var(--muted);font-size:13px;line-height:1.35}.tile .bigIcon{font-size:28px}.tile.photo{padding:0}.tile.photo img{width:100%;height:84px;object-fit:cover;display:block}.tile.photo div{padding:10px 12px}.crew{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.crew img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:22px;box-shadow:var(--shadow);border:3px solid white;background:#eee}.days{display:flex;gap:14px;overflow-x:auto;padding:3px 0 12px;scroll-snap-type:x mandatory}.dayCard{min-width:86%;height:310px;border-radius:28px;overflow:hidden;position:relative;scroll-snap-align:center;background:#0a2148;color:white;box-shadow:var(--shadow)}.dayCard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.dayCard:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,17,42,.86) 0%,rgba(2,17,42,.62) 45%,rgba(2,17,42,.08) 100%)}.dayContent{position:relative;z-index:1;padding:22px;width:70%;height:100%;display:flex;flex-direction:column;justify-content:space-between}.dayNo{width:56px;height:56px;border-radius:50%;background:var(--blue);display:grid;place-items:center;font-size:26px;font-weight:900}.dayContent h2{font-size:28px;line-height:.95;margin:8px 0;text-transform:uppercase}.dayContent p{font-size:14px;line-height:1.35;margin:0 0 8px}.checklist label{display:flex;align-items:center;gap:8px;background:#f7fbff;border:1px solid #e7eef7;border-radius:16px;padding:10px;margin:8px 0;color:var(--text);font-weight:700}.checklist input{width:20px;height:20px}.bingo{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.bingo button{border:1px solid #e4eef8;background:white;border-radius:16px;min-height:80px;font-size:28px;box-shadow:0 4px 12px rgba(7,29,67,.07)}.bingo button.done{background:#e9fff6;border-color:#7ae1b7}.bingo span{display:block;font-size:11px;margin-top:6px;color:var(--muted);font-weight:800}.note{width:100%;min-height:120px;border:1px solid #dce8f5;border-radius:18px;padding:14px;font:inherit;resize:vertical;background:#fbfdff}.nav{position:fixed;bottom:0;left:0;right:0;max-width:520px;margin:auto;background:#061735;color:white;display:grid;grid-template-columns:repeat(5,1fr);gap:0;padding:10px 6px calc(10px + env(safe-area-inset-bottom));border-radius:26px 26px 0 0;box-shadow:0 -10px 30px rgba(7,29,67,.2);z-index:9}.nav a{text-decoration:none;color:#b8c7dc;text-align:center;font-size:11px;font-weight:800}.nav a b{display:block;font-size:24px}.nav a.active{color:#1592ff}.installTip{background:#eef8ff;border:1px solid #d7ecff;border-radius:20px;padding:14px;color:#31516f;font-size:13px;line-height:1.4}.editHint{background:#fff8e5;border:1px solid #ffe3a3;border-radius:20px;padding:14px;color:#6d4c00;font-size:13px;line-height:1.4}.btn{display:inline-flex;align-items:center;justify-content:center;background:var(--blue);color:white;text-decoration:none;border-radius:16px;padding:12px 14px;font-weight:900;margin-top:8px}.full{grid-column:1/-1}@media(max-width:380px){.time b{font-size:24px}.countdown{gap:9px;padding:13px}.crew{gap:6px}.dayContent{width:78%}}
   </style>
 </head>
 <body>
   <main class="app">
-    <header class="hero" id="top">
-      <div class="kicker">Familie-roadtrip</div>
-      <h1>Glæd jer til verdens bedste sommerferie ☀️</h1>
-      <p>Herning → Paris → Disneyland → PSG → Lyon → Spanien → hjem. Lavet som en lille iPhone-venlig ferie-app til hele familien.</p>
-      <div class="chips"><span class="chip">6.-18. juli 2026</span><span class="chip">5 personer</span><span class="chip">Roadtrip i Europa</span><span class="chip">Ingen priser synlige</span></div>
+    <header class="hero" id="home">
+      <img src="assets/hero.png" alt="Vi kører Tesla - og vi skal sydpå">
     </header>
 
-    <section class="section" id="overblik">
-      <div class="grid count">
-        <div class="card stat"><div class="num" id="daysLeft">☀️</div><div class="lbl">dage til afgang</div></div>
-        <div class="card stat"><div class="num">5</div><div class="lbl">lande/områder</div></div>
-        <div class="card stat"><div class="num">3</div><div class="lbl">store højdepunkter</div></div>
-        <div class="card stat"><div class="num">∞</div><div class="lbl">is, snacks og minder</div></div>
+    <div class="countdown" aria-label="Nedtælling til afgang">
+      <div class="cal">🗓️</div><div><div class="countText">Afgang om</div><div class="time"><div><b id="days">--</b><span>DAGE</span></div><div><b id="hours">--</b><span>TIMER</span></div><div><b id="mins">--</b><span>MIN</span></div><div><b id="secs">--</b><span>SEK</span></div></div></div><div class="sun">☀️</div>
+    </div>
+
+    <section>
+      <div class="sectionTitle">📍 Rejseoversigt</div>
+      <div class="route">
+        <div class="stop"><div class="icon">🇩🇰</div><b>Herning</b><small>6. juli</small></div>
+        <div class="stop"><div class="icon">🏰</div><b>Disneyland Paris</b><small>8.-9. juli</small></div>
+        <div class="stop"><div class="icon">⚽</div><b>PSG</b><small>10. juli</small></div>
+        <div class="stop"><div class="icon">🏙️</div><b>Lyon</b><small>11. juli</small></div>
+        <div class="stop"><div class="icon">🌴</div><b>Spanien</b><small>12.-16. juli</small></div>
+        <div class="stop"><div class="icon">🏁</div><b>Hjem</b><small>17.-18. juli</small></div>
       </div>
     </section>
 
-    <section class="section">
-      <h2>Ruten</h2>
-      <div class="card">
-        <div class="map" aria-label="Roadtrip-rute">
-          <svg viewBox="0 0 800 260" role="img">
-            <path d="M70 60 C180 120 220 40 330 90 S460 190 560 130 S690 145 735 205" fill="none" stroke="white" stroke-width="8" stroke-linecap="round" stroke-dasharray="10 14"/>
-            <g fill="white" font-size="24" font-weight="800"><text x="35" y="48">🇩🇰</text><text x="245" y="62">Paris</text><text x="425" y="177">Lyon</text><text x="650" y="225">Spanien</text></g>
-            <g fill="#fbbf24"><circle cx="72" cy="62" r="10"/><circle cx="310" cy="92" r="10"/><circle cx="520" cy="132" r="10"/><circle cx="735" cy="205" r="10"/></g>
-          </svg>
-        </div>
-        <p class="small">Tip: Brug knapperne på dagskortene til navigation. Når siden ligger på GitHub Pages, kan den tilføjes til iPhone-hjemmeskærmen.</p>
+    <section id="crew">
+      <div class="sectionTitle">👨‍👧‍👦 Besætningen</div>
+      <div class="crew">
+        <img src="assets/henrik.jpeg" alt="Henrik">
+        <img src="assets/norah.jpeg" alt="Norah">
+        <img src="assets/august.jpeg" alt="August">
+        <img src="assets/bertram.jpeg" alt="Bertram">
       </div>
     </section>
 
-    <section class="section" id="plan">
-      <h2>Dagsplan</h2>
+    <section>
       <div class="grid">
-        <article class="card day"><div class="datebox"><span>man</span><b>6</b><span>jul</span></div><div><h3>Afgang fra Herning</h3><div class="meta">Roadtrippen starter</div><ul class="todo"><li><input type="checkbox"><span>Afgang ca. kl. 10.00</span></li><li><input type="checkbox"><span>Grænsestop: sodavand og snolder</span></li><li><input type="checkbox"><span>Find overnatning på vej mod Paris</span></li></ul><div class="actions"><a class="btn primary" href="https://www.google.com/maps/dir/Herning,+Denmark/Paris,+France" target="_blank">Åbn rute</a></div></div></article>
-        <article class="card day"><div class="datebox"><span>tir</span><b>7</b><span>jul</span></div><div><h3>Paris & check-in</h3><div class="meta">City-hygge og første franske aften</div><ul class="todo"><li><input type="checkbox"><span>Ankomst til Paris-området</span></li><li><input type="checkbox"><span>Check-in på hotel</span></li><li><input type="checkbox"><span>Eiffeltårnet eller hyggelig aftentur</span></li></ul><div class="actions"><a class="btn primary" href="https://www.google.com/maps/search/Eiffel+Tower+Paris" target="_blank">Eiffeltårnet</a><a class="btn" href="https://www.google.com/maps/search/restaurants+near+Eiffel+Tower+Paris" target="_blank">Mad i nærheden</a></div></div></article>
-        <article class="card day"><div class="datebox"><span>ons</span><b>8</b><span>jul</span></div><div><h3>Disneyland Paris</h3><div class="meta">Første Disney-dag</div><ul class="todo"><li><input type="checkbox"><span>Indgang fra ca. kl. 08.30</span></li><li><input type="checkbox"><span>Find familiens favorit-ride</span></li><li><input type="checkbox"><span>Bliv til aftenshowet, hvis energien er der</span></li></ul><div class="actions"><a class="btn pink" href="https://www.google.com/maps/search/Disneyland+Paris" target="_blank">Navigér</a><a class="btn" href="https://www.disneylandparis.com/en-gb/attractions/" target="_blank">Rides</a></div></div></article>
-        <article class="card day"><div class="datebox"><span>tor</span><b>9</b><span>jul</span></div><div><h3>Disneyland Paris</h3><div class="meta">Dag 2: de store favoritter</div><ul class="todo"><li><input type="checkbox"><span>Start med de mest populære rides</span></li><li><input type="checkbox"><span>Tag billeder sammen</span></li><li><input type="checkbox"><span>Vælg én ride alle skal prøve igen</span></li></ul><div class="actions"><a class="btn pink" href="https://www.google.com/maps/search/Disneyland+Paris" target="_blank">Til parken</a></div></div></article>
-        <article class="card day"><div class="datebox"><span>fre</span><b>10</b><span>jul</span></div><div><h3>Paris, PSG og mod Lyon</h3><div class="meta">Stadion, shopping og afsted sydpå</div><ul class="todo"><li><input type="checkbox"><span>Check ud fra hotellet</span></li><li><input type="checkbox"><span>PSG stadion-rundtur</span></li><li><input type="checkbox"><span>City shopping eller seværdigheder</span></li><li><input type="checkbox"><span>Kør mod Lyon og find overnatning</span></li></ul><div class="actions"><a class="btn primary" href="https://www.google.com/maps/search/Parc+des+Princes+Paris" target="_blank">PSG stadion</a><a class="btn" href="https://www.google.com/maps/dir/Paris,+France/Lyon,+France" target="_blank">Rute mod Lyon</a></div></div></article>
-        <article class="card day"><div class="datebox"><span>lør</span><b>11</b><span>jul</span></div><div><h3>Lyon</h3><div class="meta">Museum, streetfood og storbystemning</div><ul class="todo"><li><input type="checkbox"><span>Musée des Confluences</span></li><li><input type="checkbox"><span>Opdag Lyon til fods</span></li><li><input type="checkbox"><span>Find streetfood eller god is</span></li></ul><div class="actions"><a class="btn primary" href="https://www.google.com/maps/search/Mus%C3%A9e+des+Confluences+Lyon" target="_blank">Museet</a><a class="btn" href="https://www.google.com/maps/search/Old+Lyon" target="_blank">Vieux Lyon</a></div></div></article>
-        <article class="card day"><div class="datebox"><span>søn</span><b>12</b><span>jul</span></div><div><h3>Kurs mod Spanien</h3><div class="meta">Lyon → Lloret de Mar</div><ul class="todo"><li><input type="checkbox"><span>Kør mod Evenia Olympic Garden</span></li><li><input type="checkbox"><span>Ankomst efter kl. 13.00</span></li><li><input type="checkbox"><span>Pool, drinks og ferie-mode</span></li></ul><div class="actions"><a class="btn pink" href="https://www.google.com/maps/dir/Lyon,+France/Evenia+Olympic+Garden,+Lloret+de+Mar" target="_blank">Til hotellet</a></div></div></article>
-        <article class="card day"><div class="datebox"><span>12-16</span><b>☀️</b><span>jul</span></div><div><h3>Spanien</h3><div class="meta">Badedage, pool og måske Barcelona</div><ul class="todo"><li><input type="checkbox"><span>Pooldag på hotellet</span></li><li><input type="checkbox"><span>Strandtur i Lloret de Mar</span></li><li><input type="checkbox"><span>Overvej Barcelona-dag</span></li><li><input type="checkbox"><span>Find familiens bedste tapas/snack</span></li></ul><div class="actions"><a class="btn primary" href="https://www.google.com/maps/search/Evenia+Olympic+Garden+Lloret+de+Mar" target="_blank">Hotel</a><a class="btn" href="https://www.google.com/maps/dir/Lloret+de+Mar/Barcelona" target="_blank">Barcelona</a></div></div></article>
-        <article class="card day"><div class="datebox"><span>tor</span><b>16</b><span>jul</span></div><div><h3>Hjemturen starter</h3><div class="meta">Nordpå igen</div><ul class="todo"><li><input type="checkbox"><span>Check ud senest kl. 10.00</span></li><li><input type="checkbox"><span>Måske sidste pooltid</span></li><li><input type="checkbox"><span>Find overnatning undervejs</span></li><li><input type="checkbox"><span>Danmark fredag/lørdag</span></li></ul><div class="actions"><a class="btn primary" href="https://www.google.com/maps/dir/Lloret+de+Mar,+Spain/Herning,+Denmark" target="_blank">Rute hjem</a></div></div></article>
+        <a class="tile photo" href="#plan"><img src="assets/day03.png" alt="Roadtrip"><div><h3>📅 Dagsplan</h3><p>Se rejsen dag for dag</p></div></a>
+        <a class="tile" href="https://www.google.com/maps/dir/Herning/Disneyland+Paris/Lyon/Evenia+Olympic+Garden" target="_blank" rel="noreferrer"><div class="bigIcon">🧭</div><h3>Næste stop</h3><p>Åbn ruten i Google Maps</p></a>
+        <a class="tile" href="#bingo"><div class="bigIcon">🏆</div><h3>Feriebingo</h3><p>Kryds oplevelser af undervejs</p></a>
+        <a class="tile" href="#notes"><div class="bigIcon">✍️</div><h3>Rejsedagbog</h3><p>Skriv minder og sjove historier</p></a>
       </div>
     </section>
 
-    <section class="section" id="bingo">
-      <h2>Ferie-bingo for ungerne</h2>
-      <div class="card"><p class="small">Kryds af undervejs. Alt gemmes på telefonen.</p><div class="bingo">
-        <label><input type="checkbox"><span>Spis croissant i Frankrig 🥐</span></label><label><input type="checkbox"><span>Tag selfie foran Eiffeltårnet 🗼</span></label><label><input type="checkbox"><span>Find familiens bedste ride 🎢</span></label><label><input type="checkbox"><span>Se PSG-stadion 🏟️</span></label><label><input type="checkbox"><span>Prøv noget fransk mad 🇫🇷</span></label><label><input type="checkbox"><span>Find den bedste is 🍦</span></label><label><input type="checkbox"><span>Bad i Middelhavet 🌊</span></label><label><input type="checkbox"><span>Tag et sjovt bilbillede 🚗</span></label><label><input type="checkbox"><span>Se noget vildt i Lyon 🦖</span></label><label><input type="checkbox"><span>Sig “bonjour” til nogen 👋</span></label><label><input type="checkbox"><span>Find en palme 🌴</span></label><label><input type="checkbox"><span>Vælg dagens sang 🎧</span></label>
-      </div></div>
+    <section id="plan">
+      <div class="sectionTitle">📅 Dagsplan</div>
+      <div class="days">
+        <article class="dayCard"><img src="assets/day01.png" alt="Overnatning på vej mod Paris"><div class="dayContent"><div><div class="dayNo">01</div><h2>Overnatning</h2><p>Mandag 6. juli. Afgang fra Herning, grænsehandel og første overnatning på vej mod Paris.</p></div><b>Eventyret starter 💙</b></div></article>
+        <article class="dayCard"><img src="assets/day02.png" alt="Disneyland Paris"><div class="dayContent"><div><div class="dayNo">02</div><h2>Disneyland</h2><p>Onsdag og torsdag: to fulde dage med rides, shows og Disney-stemning.</p></div><b>Magi hele dagen ✨</b></div></article>
+        <article class="dayCard"><img src="assets/day04.png" alt="Eiffeltårnet"><div class="dayContent"><div><div class="dayNo">03</div><h2>Paris</h2><p>PSG Stadion Tour, Eiffeltårnet og videre mod Lyon.</p></div><b>Paris på toppen 🗼</b></div></article>
+        <article class="dayCard"><img src="assets/day05.png" alt="Musée des Confluences"><div class="dayContent"><div><div class="dayNo">04</div><h2>Museum</h2><p>Musée des Confluences i Lyon med science, rum, natur og fremtid.</p></div><b>Ikke et kedeligt museum 🚀</b></div></article>
+        <article class="dayCard"><img src="assets/day06.png" alt="Lyon"><div class="dayContent"><div><div class="dayNo">05</div><h2>Lyon</h2><p>Streetfood, storbytid og hyggelige spots.</p></div><b>God mad & stemning 🍔</b></div></article>
+        <article class="dayCard"><img src="assets/day07.png" alt="Spanien"><div class="dayContent"><div><div class="dayNo">06</div><h2>Spanien</h2><p>Evenia Olympic Garden, pool, all inclusive og måske Barcelona.</p></div><b>Sol, pool og ferie 🌴</b></div></article>
+        <article class="dayCard"><img src="assets/day08.png" alt="Turen hjem"><div class="dayContent"><div><div class="dayNo">07</div><h2>Hjemtur</h2><p>Turen går mod Danmark igen med minder i bagagen.</p></div><b>Sommerferie vi husker 💙</b></div></article>
+      </div>
     </section>
 
-    <section class="section" id="tips">
-      <h2>iPhone-tip</h2>
-      <div class="card install"><p class="note"><b>Sådan gør I den app-agtig:</b><br>Upload filen til GitHub Pages, åbn linket i Safari på iPhone, tryk Del → Føj til hjemmeskærm. Så ligger den som ikon på telefonen.</p><p class="small">Tjekbokse gemmes lokalt i browseren på den enkelte telefon. De deles ikke automatisk mellem jer.</p><div class="actions"><button class="btn" id="resetBtn" type="button">Nulstil alle flueben</button></div></div>
+    <section>
+      <div class="sectionTitle">✅ Tjekliste</div>
+      <div class="checklist">
+        <label><input type="checkbox" data-save="snolder"> Slik og sodavand ved grænsen</label>
+        <label><input type="checkbox" data-save="disney"> Se fyrværkeri/aftenshow i Disneyland</label>
+        <label><input type="checkbox" data-save="psg"> Tage billede ved PSG-stadion</label>
+        <label><input type="checkbox" data-save="eiffel"> Se Eiffeltårnet</label>
+        <label><input type="checkbox" data-save="pool"> Første badetur i Spanien</label>
+      </div>
     </section>
-    <div class="footer">Lavet til familien Ahler · Sommerferie 2026</div>
+
+    <section id="bingo">
+      <div class="sectionTitle">🏆 Feriebingo</div>
+      <div class="bingo">
+        <button data-bingo="croissant">🥐<span>Spis croissant</span></button>
+        <button data-bingo="selfie">📸<span>Tag selfie</span></button>
+        <button data-bingo="ride">🎢<span>Prøv et ride</span></button>
+        <button data-bingo="psg">⚽<span>PSG-billede</span></button>
+        <button data-bingo="pool">🏊<span>Pooltid</span></button>
+        <button data-bingo="ice">🍦<span>Spis is</span></button>
+        <button data-bingo="tesla">🔌<span>Ladepause</span></button>
+        <button data-bingo="sunset">🌅<span>Solnedgang</span></button>
+        <button data-bingo="souvenir">🛍️<span>Souvenir</span></button>
+      </div>
+    </section>
+
+    <section id="notes">
+      <div class="sectionTitle">✍️ Rejsedagbog</div>
+      <textarea id="diary" class="note" placeholder="Skriv sjove minder her..."></textarea>
+    </section>
+
+    <section>
+      <div class="installTip"><b>På iPhone:</b> Åbn siden i Safari → tryk Del → “Føj til hjemmeskærm”. Så føles den som en app.</div>
+      <br>
+      <div class="editHint"><b>Vedligeholdelse:</b> Alle billeder ligger i mappen <b>assets</b>. Erstat fx <b>assets/august.jpeg</b> med et nyt billede med samme filnavn, så opdateres appen uden at ændre kode.</div>
+    </section>
   </main>
-  <div class="tabs"><nav><a href="#overblik"><span>🏠</span>Overblik</a><a href="#plan"><span>📅</span>Plan</a><a href="#bingo"><span>✅</span>Bingo</a><a href="#tips"><span>📱</span>iPhone</a></nav></div>
-  <script>
-    const key='sommerferie2026-v2-checks';
-    const boxes=[...document.querySelectorAll('input[type="checkbox"]')];
-    const saved=JSON.parse(localStorage.getItem(key)||'[]');
-    boxes.forEach((box,i)=>{box.checked=!!saved[i];box.addEventListener('change',()=>{localStorage.setItem(key,JSON.stringify(boxes.map(b=>b.checked)));});});
-    document.getElementById('resetBtn').addEventListener('click',()=>{boxes.forEach(b=>b.checked=false);localStorage.removeItem(key);});
-    const start=new Date('2026-07-06T10:00:00+02:00');
-    const now=new Date();
-    const diff=Math.ceil((start-now)/(1000*60*60*24));
-    document.getElementById('daysLeft').textContent=diff>0?diff:'🚗';
-  </script>
+
+  <nav class="nav">
+    <a class="active" href="#home"><b>🏠</b>Forside</a>
+    <a href="#plan"><b>📅</b>Plan</a>
+    <a href="https://www.google.com/maps/dir/Herning/Disneyland+Paris/Lyon/Evenia+Olympic+Garden" target="_blank"><b>📍</b>Kort</a>
+    <a href="#bingo"><b>🏆</b>Bingo</a>
+    <a href="#crew"><b>👥</b>Hold</a>
+  </nav>
+
+<script>
+const departure = new Date('2026-07-06T10:00:00+02:00');
+function tick(){const now=new Date();let diff=Math.max(0,departure-now);const d=Math.floor(diff/86400000);diff-=d*86400000;const h=Math.floor(diff/3600000);diff-=h*3600000;const m=Math.floor(diff/60000);diff-=m*60000;const s=Math.floor(diff/1000);days.textContent=d;hours.textContent=h;mins.textContent=m;secs.textContent=s} tick(); setInterval(tick,1000);
+document.querySelectorAll('[data-save]').forEach(el=>{const k='trip-check-'+el.dataset.save;el.checked=localStorage.getItem(k)==='1';el.addEventListener('change',()=>localStorage.setItem(k,el.checked?'1':'0'))});
+document.querySelectorAll('[data-bingo]').forEach(btn=>{const k='trip-bingo-'+btn.dataset.bingo;btn.classList.toggle('done',localStorage.getItem(k)==='1');btn.addEventListener('click',()=>{btn.classList.toggle('done');localStorage.setItem(k,btn.classList.contains('done')?'1':'0')})});
+const diary=document.getElementById('diary');diary.value=localStorage.getItem('trip-diary')||'';diary.addEventListener('input',()=>localStorage.setItem('trip-diary',diary.value));
+</script>
 </body>
 </html>
