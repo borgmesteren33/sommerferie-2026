@@ -119,7 +119,8 @@
           <button class="quizItem locked" id="startDisney2" type="button">🔒 Disneyland Challenge 2 <small>10 spørgsmål · låst</small></button>
           <button class="quizItem locked" id="startPsg" type="button">🔒 PSG Challenge <small>10 spørgsmål · låst</small></button>
           <button class="quizItem locked" id="startLyon" type="button">🔒 Lyon Challenge <small>10 spørgsmål · låst</small></button>
-          <button class="quizItem locked" type="button">🔒 Spanien Challenge <small>Kommer senere</small></button>
+          <button class="quizItem locked" id="startSpain1" type="button">🔒 Spanien Challenge 1 <small>10 spørgsmål · låst</small></button>
+          <button class="quizItem locked" id="startSpain2" type="button">🔒 Spanien Challenge 2 <small>10 spørgsmål · låst</small></button>
           <button class="quizItem locked" type="button">🔒 Bonus Challenge <small>Hemmelig mission</small></button>
         </div>
       </div>
@@ -251,6 +252,30 @@ const quizzes={
   {q:'Hvis vi kun har én eftermiddag/aften i Lyon, hvad er smart?',a:['Lave en kort men god plan','Prøve at nå alt i byen','Sove hele dagen','Køre rundt uden mål'],correct:0,explain:'En kort og god plan giver mest hygge og mindst stress.'},
   {q:'Hvad glæder du dig mest til i Lyon?',a:['Museet','Maden','Byhyggen','Hotellet'],correct:null,explain:'Alle svar tæller – Lyon kan noget forskelligt for alle 😄'},
   {q:'Hvad er næste store mål efter Lyon?',a:['Spanien','Paris igen','Danmark','London'],correct:0,explain:'Efter Lyon går turen videre mod Spanien og poolferie.'}
+ ]},
+ spain1:{code:'SPAIN',storage:'quiz-spain1-unlocked',button:'startSpain1',title:'🌴 Spanien Challenge 1',badgeLow:'🌴 Spanien Rookie',badgeMid:'🍹 Pool Explorer',badgeHigh:'☀️ Ferie Master',midText:'Flot! Du er klar til pool, sol og ferie.',highText:'Ferie Master! Spanien kan bare komme an.',questions:[
+  {q:'Hvad er den vigtigste mission, når vi ankommer til Spanien?',a:['Vaske bilen','Pakke om','Starte ferien','Køre videre'],correct:2,explain:'Når vi når Spanien, starter den rigtige poolferie.'},
+  {q:'Hvad hedder hotellet vi skal bo på?',a:['Brit Hotel Avallon','Disneyland Hotel','Evenia Olympic Garden','PSG Hotel'],correct:2,explain:'Vi skal bo på Evenia Olympic Garden.'},
+  {q:'Hvor ligger hotellet?',a:['Barcelona','Lloret de Mar','Madrid','Valencia'],correct:1,explain:'Hotellet ligger i Lloret de Mar.'},
+  {q:'Hvor mange nætter skal vi bo på Evenia Olympic Garden?',a:['2','3','4','5'],correct:2,explain:'Vi skal bo der 4 nætter, men får 5 dage i Spanien.'},
+  {q:'Hvad skal vi huske hver dag?',a:['Hue','Solcreme','Skihandsker','Regntøj'],correct:1,explain:'Solcreme bliver en vigtig del af Spanien-missionen.'},
+  {q:'Hvis poolen åbner kl. 10, hvem er sandsynligvis klar først?',a:['Norah','August','Bertram','Far'],correct:null,explain:'Alle svar tæller. Det finder vi først ud af ved poolen 😄'},
+  {q:'Hvad tror du bliver den første alkoholfrie cocktail vi bestiller?',a:['Virgin Mojito','Strawberry Daiquiri uden alkohol','Piña Colada uden alkohol','Noget helt andet'],correct:null,explain:'Her er der ingen forkerte svar – det bliver en vigtig pooltest 🍹'},
+  {q:'Hvad er smartest at gøre på første feriedag?',a:['Stresse','Slappe af','Pakke bilen igen','Lede efter motorvejen'],correct:1,explain:'Efter lang roadtrip er det smarteste at slappe af.'},
+  {q:'Hvor mange gange tror du vi kommer i poolen i løbet af ferien?',a:['1-5 gange','6-10 gange','11-20 gange','Mere end 20 gange'],correct:null,explain:'Alle svar tæller – vi ser bagefter hvem der kom tættest på 😄'},
+  {q:'Hvad er næste store mission efter Spanien?',a:['Disneyland','Paris','Hjem til Danmark','Lyon'],correct:2,explain:'Efter Spanien går turen hjem mod Danmark.'}
+ ]},
+ spain2:{code:'POOL',storage:'quiz-spain2-unlocked',button:'startSpain2',title:'🏖️ Spanien Challenge 2',badgeLow:'🏖️ Beach Rookie',badgeMid:'🌊 Costa Brava Explorer',badgeHigh:'🍦 Spanien Legend',midText:'Stærkt! Du har styr på Costa Brava-stemningen.',highText:'Spanien Legend! Du er officielt ferieekspert.',questions:[
+  {q:'Hvilket hav ligger Lloret de Mar ved?',a:['Atlanterhavet','Middelhavet','Nordsøen','Sortehavet'],correct:1,explain:'Lloret de Mar ligger ved Middelhavet på Costa Brava.'},
+  {q:'Hvad betyder “Costa Brava”?',a:['Den blå kyst','Den varme kyst','Den vilde kyst','Den lange kyst'],correct:2,explain:'Costa Brava betyder omtrent den vilde kyst.'},
+  {q:'Hvor mange poolområder tror du vi kommer til at prøve?',a:['1','2','3','Så mange som muligt'],correct:null,explain:'Alle svar tæller. Måske skal vi teste dem alle 😄'},
+  {q:'Hvis temperaturen bliver 30 grader, hvad er smartest?',a:['Solcreme','Mere solcreme','Endnu mere solcreme','Alle ovenstående'],correct:3,explain:'Far bliver meget glad, hvis alle vælger D.'},
+  {q:'Hvad tror du bliver mest populært?',a:['Pool','Cocktails','Buffet','Strand'],correct:null,explain:'Alle svar tæller – det bliver sjovt at se hvad der vinder.'},
+  {q:'Hvor langt er der cirka fra hotellet til stranden?',a:['200 meter','800 meter','2 km','10 km'],correct:1,explain:'Stranden ligger inden for gåafstand fra hotellet.'},
+  {q:'Hvilken mission er vigtigst?',a:['Slappe af','Hygge sig','Have det sjovt','Alle ovenstående'],correct:3,explain:'Det er jo hele formålet med ferien.'},
+  {q:'Hvor mange alkoholfrie cocktails tror du Far når at bestille?',a:['1-3','4-6','7-10','Flere end 10'],correct:null,explain:'Alle svar tæller – men Far kan nok godt overraske 😄'},
+  {q:'Hvad tror du bliver feriens bedste billede?',a:['Ved poolen','På stranden','Ved hotellet','Et helt andet sted'],correct:null,explain:'Alle svar tæller – feriens bedste billede finder vi først bagefter.'},
+  {q:'Når ferien er slut, hvad tager vi så med hjem?',a:['Solbrændt hud','Minder','Billeder','Det hele'],correct:3,explain:'Den bedste souvenir er alle oplevelserne sammen.'}
  ]}
 };
 const quizHome=document.getElementById('quizHome'), quizPlay=document.getElementById('quizPlay'), quizResult=document.getElementById('quizResult'), quizCode=document.getElementById('quizCode'), unlockQuiz=document.getElementById('unlockQuiz'), quizCodeError=document.getElementById('quizCodeError'), quizProgress=document.getElementById('quizProgress'), quizScore=document.getElementById('quizScore'), quizQuestion=document.getElementById('quizQuestion'), quizAnswers=document.getElementById('quizAnswers'), quizFeedback=document.getElementById('quizFeedback'), checkAnswer=document.getElementById('checkAnswer'), nextQuestion=document.getElementById('nextQuestion'), backToQuizHome=document.getElementById('backToQuizHome'), finalScore=document.getElementById('finalScore'), finalBadge=document.getElementById('finalBadge'), finalText=document.getElementById('finalText'), restartQuiz=document.getElementById('restartQuiz'), resultHome=document.getElementById('resultHome');
